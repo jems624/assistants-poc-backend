@@ -26,9 +26,10 @@ async def create_thread():
 
 
 @app.get("/threads/{thread_id}/messages", tags=["Messages"])
-async def list_messages(thread_id: str):
+async def list_messages(thread_id: str, limit: int=10):
     messages = client.beta.threads.messages.list(
         thread_id=thread_id,
+        limit=limit
     )
     return messages
 
@@ -44,7 +45,7 @@ async def create_message(thread_id: str, body: MessageRequest):
         assistant_id=settings.openai_assistant_id,
         instructions="Limit your response to 500 characters or less. All your reponses must be in rhyme.",
     )
-    return run
+    return {'run': run, 'message': message}
 
 @app.get("/threads/{thread_id}/runs/{run_id}", tags=["Runs"])
 async def get_run(thread_id: str, run_id: str):

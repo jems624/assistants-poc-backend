@@ -1,6 +1,6 @@
-# Assistant Chat Frontend
+# Assistant Chat Backend
 
-Backend component for chatting with OpenAI Assitant
+Backend component for chatting with OpenAI Assitant.
 
 ## Installation
 
